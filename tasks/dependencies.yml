@@ -1,0 +1,10 @@
+---
+name: Install dependencies
+apt:
+  state: latest
+  update_cache: yes
+  name:
+    - apt-transport-https
+tags:
+  - nodejs
+  - dependencies
