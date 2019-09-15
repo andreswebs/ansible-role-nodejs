@@ -1,11 +1,11 @@
 # ansible-role-nodejs
 
-Installs Node and Yarn.
+Installs Node.js and Yarn.
 
 ## role variables
 
 nodejs_version
 
-# license
+## license
 
 [Unlicense](UNLICENSE.md)
