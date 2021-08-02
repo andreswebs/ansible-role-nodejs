@@ -1,49 +1,35 @@
 ---
+- name: Install dependencies
+  ansible.builtin.apt:
+    state: latest
+    update_cache: yes
+    name:
+      - apt-transport-https
+  tags:
+    - nodejs
+    - dependencies
+    
 - name: Add Node.js apt key
-  apt_key:
+  ansible.builtin.apt_key:
     url:  https://deb.nodesource.com/gpgkey/nodesource.gpg.key
     state: present
+    keyring: /etc/apt/trusted.gpg.d/nodesource.gpg    
   tags:
     - nodejs
 
 # https://github.com/nodesource/distributions/blob/master/README.md#debinstall
 - name: Add Node.js repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: "deb https://deb.nodesource.com/{{ nodejs_version }} {{ ansible_distribution_release | lower }} main"
     state: present
+    filename: nodesource    
   tags:
     - nodejs
 
 - name: Install Node.js
-  apt:
+  ansible.builtin.apt:
     update_cache: yes
     state: present
     name: nodejs
   tags:
     - nodejs
-
-# https://yarnpkg.com/en/docs/install#debian-stable
-- name: Add Yarn.js apt key
-  apt_key:
-    url: https://dl.yarnpkg.com/debian/pubkey.gpg
-    state: present
-  tags:
-    - nodejs
-    - yarn
-
-- name: Add Yarn.js repository
-  apt_repository:
-    repo: "deb https://dl.yarnpkg.com/debian/ stable main"
-    state: present
-  tags:
-    - nodejs
-    - yarn
-
-- name: Install Yarn.js
-  apt:
-    update_cache: yes
-    state: present
-    name: yarn
-  tags:
-    - nodejs
-    - yarn

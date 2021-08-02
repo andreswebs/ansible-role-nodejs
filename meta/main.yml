@@ -1,2 +1,22 @@
 ---
+galaxy_info:
+  author: Andre Silva
+  description: Installs Node.js
+  role_name: nodejs
+  
+  license: Unlicense
+
+  min_ansible_version: 2.9
+
+  github_branch: main
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+        - focal
+
+  galaxy_tags:
+    - nodejs
+
 dependencies: []
